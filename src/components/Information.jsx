@@ -1,4 +1,4 @@
-import { Box, Container, makeStyles, Typography } from "@material-ui/core";
+import { Box, makeStyles, Typography } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import FlareIcon from "@material-ui/icons/Flare";
 import OpacityIcon from "@material-ui/icons/Opacity";
@@ -10,25 +10,19 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import SpeedIcon from "@material-ui/icons/Speed";
 
 const useStyles = makeStyles({
-  component: {
-    margin: "30px 60px",
-  },
-  container: {
-    display: "flex",
-  },
   row: {
     padding: 8,
-    fontSize: 18,
+    fontSize: "1rem",
     letterSpacing: 2,
   },
   value: {
-    color: "#1500ff",
-    fontSize: 20,
+    color: "#FFFAFA",
+    fontSize: "1rem",
   },
   icon: {
     color: "red",
-    marginRight: 15,
-    fontSize: 30,
+    marginRight: "1rem",
+    fontSize: "1rem,",
   },
   error: {
     background: "red",
@@ -52,7 +46,10 @@ const Information = ({ data, city, country }) => {
   };
 
   return data && city && country ? (
-    <Container>
+    <Box p={2}>
+      <Typography variant="h5" gutterBottom style={{ color: "#FFFFE0" }}>
+        Weather Details
+      </Typography>
       <Typography className={classes.row}>
         <LocationOnIcon className={classes.icon} />
         Location:{" "}
@@ -107,7 +104,7 @@ const Information = ({ data, city, country }) => {
         Wind Speed:{" "}
         <Box className={classes.value} component="span">
           {data.wind.speed}
-          {" Km/hr "}
+          {"Km/h"}
         </Box>
       </Typography>
 
@@ -126,7 +123,7 @@ const Information = ({ data, city, country }) => {
           {getCloudsData(data.clouds.all)}{" "}
         </Box>
       </Typography>
-    </Container>
+    </Box>
   ) : !(city && country) ? (
     <Typography className={classes.error}>
       Please Enter the Name of City and Country to check Weather

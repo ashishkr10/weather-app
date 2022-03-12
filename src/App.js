@@ -1,7 +1,7 @@
-import Weather from "./components/Weather";
+import Form from "./components/Form";
 
 function App() {
-  return <Weather />;
+  return <Form />;
 }
 
 export default App;

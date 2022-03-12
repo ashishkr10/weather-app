@@ -1,20 +1,13 @@
-import {
-  Button,
-  makeStyles,
-  TextField,
-  Typography,
-  Grid,
-} from "@material-ui/core";
+import { Button, TextField, Grid, Box, makeStyles } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { getWeather } from "../service/api";
 import Information from "./Information";
+import Weather from "./Weather";
 
 const useStyle = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(2),
-      padding: theme.spacing(1),
-    },
+  form: {
+    backgroundColor: "#1E90FF",
+    height: "100vh",
   },
 }));
 
@@ -45,51 +38,44 @@ const Form = () => {
   };
 
   return (
-    <>
-      <Grid container>
-        <Grid className={classes.root}>
-          <Grid>
-            <Typography variant="h4" style={{ color: "#343634" }}>
-              Welcome to Weather App!!
-            </Typography>
-          </Grid>
-          <Grid p={200}>
-            <TextField
-              label="City"
-              margin="normal"
-              fullWidth="true"
-              inputProps={{ style: { fontSize: 18 } }}
-              InputLabelProps={{ style: { fontSize: 18 } }}
-              onChange={(e) => handleCityChange(e.target.value)}
-            />
-          </Grid>
-          <Grid>
-            <TextField
-              label="Country"
-              margin="normal"
-              fullWidth="true"
-              inputProps={{ style: { fontSize: 18 } }}
-              InputLabelProps={{ style: { fontSize: 18 } }}
-              onChange={(e) => handleCountryChange(e.target.value)}
-            />
-          </Grid>
-          <Grid>
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              onClick={() => handleClick(true)}
-              style={{ textTransform: "none", borderRadius: 10 }}
-            >
-              Get Weather
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid>
-          <Information data={data} city={city} country={country} />
-        </Grid>
+    <Grid container>
+      <Grid item lg={8} md={6} sm={4} xs={0}>
+        <Weather data={data} city={city} country={country} />
       </Grid>
-    </>
+      <Grid item lg={4} md={6} sm={8} xs={12}>
+        <Box className={classes.form}>
+          <Box p={4}>
+            <Grid container spacing={4}>
+              <Grid item lg={4} md={4} sm={4} xs={4}>
+                <TextField
+                  label="Country"
+                  onChange={(e) => handleCountryChange(e.target.value)}
+                />
+              </Grid>
+              <Grid item lg={4} md={4} sm={4} xs={4}>
+                <TextField
+                  label="City"
+                  onChange={(e) => handleCityChange(e.target.value)}
+                />
+              </Grid>
+              <Grid item lg={4} md={4} sm={4} xs={4}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  style={{ textTransform: "none" }}
+                  onClick={() => handleClick(true)}
+                >
+                  Get Weather
+                </Button>
+              </Grid>
+              <Grid item lg={12} md={12} sm={12} xs={12}>
+                <Information data={data} city={city} country={country} />
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 
