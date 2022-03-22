@@ -39,7 +39,7 @@ const Weather = ({ data, city, country }) => {
 
   return data && city && country ? (
     <>
-      <Grid container>
+      <Grid>
         {showImg && (
           <Card style={{ boxShadow: "none", borderRadius: 0 }}>
             <CardContent className={classes.cardcontent}>
@@ -95,7 +95,7 @@ const Weather = ({ data, city, country }) => {
       </Grid>
     </>
   ) : (
-    <Grid container>
+    <Grid>
       {showImg && (
         <Card style={{ boxShadow: "none", borderRadius: 0 }}>
           <CardContent className={classes.cardcontent}>
